@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 
 //Route files
-const madamesauce = require('./routes/madame_sauce');
+const menu = require('./routes/menu');
 
 //load env vars
 dotenv.config({ path: './config.env' });
@@ -10,7 +10,7 @@ dotenv.config({ path: './config.env' });
 const app = express();
 
 //Mount routers
-app.use('/api/madamesauce', madamesauce);
+app.use('/api/menu', menu);
 
 const PORT = process.env.PORT || 5000;
 
