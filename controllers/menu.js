@@ -37,7 +37,3 @@ exports.updateMenu = (req, res, next) => {
 exports.deleteMenu = (req, res, next) => {
     res.status(200).json({ success: true, msq: `delete menu ${req.params.id}` });
 };
-
-
-
-
