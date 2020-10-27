@@ -1,0 +1,29 @@
+[{
+  "_id": {
+    "$oid": "5f9411e0de8e8a03fcce6331"
+  },
+  "name": "Cornflakes",
+  "price": 910,
+  "quantity": 1
+},{
+  "_id": {
+    "$oid": "5f9411e0de8e8a03fcce6332"
+  },
+  "name": "Beans",
+  "price": 200,
+  "quantity": 1
+},{
+  "_id": {
+    "$oid": "5f9411e0de8e8a03fcce6333"
+  },
+  "name": "Rice",
+  "price": 250,
+  "quantity": 1
+},{
+  "_id": {
+    "$oid": "5f9411e0de8e8a03fcce6334"
+  },
+  "name": "Plantan porridge",
+  "price": 400,
+  "quantity": 1
+}]

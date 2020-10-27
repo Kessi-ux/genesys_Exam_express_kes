@@ -15,6 +15,9 @@ connectDB();
 //Route files
 const menu = require('./routes/menu');
 
+//Body parser
+app.use(express.json());
+
 //devlogging middleware
 if (process.env.Node_ENV === 'development') {
     app.use(morgan('dev'));
