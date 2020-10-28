@@ -7,25 +7,26 @@ const FoodMenuSchema = new Schema({
     name: {
         type: String,
         required: [true, 'Please add a name'],
+        unique: true,
         trim: true,
         maxlenght: [18, 'Name cannot be more than eighteen charaters']
     },
-    // slug: String,
-    // description: {
-    //     type: String,
-    //     required: [true, 'Please add a description'],
-    //     maxlenght: [250, 'Description cannot br more than 250 characters']
-    // },
-    // email: {
-    //     type: String,
-    //     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-    //         'Please add a valid email'
-    //     ]
-    // },
-    // address: {
-    //     type: String,
-    //     required: [true, 'Please add your address']
-    // },
+    slug: String,
+    description: {
+        type: String,
+        required: [true, 'Please add a description'],
+        maxlenght: [250, 'Description cannot br more than 250 characters']
+    },
+    email: {
+        type: String,
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+            'Please add a valid email'
+        ]
+    },
+    address: {
+        type: String,
+        required: [true, 'Please add your address']
+    },
     price: Number,
     quantity: Number,
     // location: {
@@ -46,19 +47,19 @@ const FoodMenuSchema = new Schema({
     //     zipcode: Number,
     //     country: String
     // },
-    // averageRating: {
-    //     type: Number,
-    //     min: [1, 'Rating must be at least 1'],
-    //     max: [10, 'Rating cannot be more than 10']
-    // },
-    // photo: {
-    //     type: String,
-    //     default: 'no_photo.jpg'
-    // },
-    // createdAt: {
-    //     type: Date,
-    //     default: Date.now
-    // }
+    averageRating: {
+        type: Number,
+        min: [1, 'Rating must be at least 1'],
+        max: [10, 'Rating cannot be more than 10']
+    },
+    photo: {
+        type: String,
+        default: 'no_photo.jpg'
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 
