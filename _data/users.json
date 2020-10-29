@@ -1,19 +1,19 @@
-"name": "Obi",
-"slug": "String",
-"description": "protein",
-"email": "sss@gmail.com",
-"address": "4 chime ave"
-"price": 900,
-"quantity": 1,
-"location": {
-    "type": "akpkpa",
-    "coordinates": 234
-},
 {
-    "formattedAddress": "4",
-    "street": "chime ave",
-    "city": "enugu",
-    "zipcode": 3333,
-    "country": "nigeria"
-},
-"averageRating": 7
+    "name": "Obi",
+    "slug": "String",
+    "description": "protein",
+    "email": "sss@gmail.com",
+    "address": "4 chime ave",
+    "price": 900,
+    "quantity": 1,
+    "location": {
+        "type": "akpkpa",
+        "coordinates": 234,
+        "formattedAddress": "4",
+        "street": "chime ave",
+        "city": "enugu",
+        "zipcode": 3333,
+        "country": "nigeria"
+    },
+    "averageRating": 7
+}

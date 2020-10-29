@@ -4,7 +4,15 @@ const Menu = require('../models/Menu');
 //@route Get /api/menu
 //@access Public
 
-exports.getMenus = (req, res, next) => {
+exports.getMenus = async (req, res, next) => {
+    try {
+        const menus = await Menu.find();
+        res.status(200).json({ success: true, data: menus });
+
+    } catch (err) {
+        res.status(400).json({ success: false });
+    }
+
     res.status(200).json({ success: true, msg: 'show all menu' });
 };
 
