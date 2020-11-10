@@ -20,7 +20,7 @@ exports.getMenus = async (req, res, next) => {
 
 exports.getMenu = async (req, res, next) => {
     try {
-        const menu = await Menu.findbyId(req.params.id);
+        const menu = await Menu.findById(req.params.id);
         res.status(200).json({ success: true, data: menu });
 
         if (!menu) {
@@ -28,7 +28,8 @@ exports.getMenu = async (req, res, next) => {
         }
 
     } catch (err) {
-        res.status(400).json({ success: false });
+        // res.status(400).json({ success: false });
+        next(err);
     }
 };
 //@desc create new menus
