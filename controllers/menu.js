@@ -1,3 +1,5 @@
+const ErrorResponse = require('../utils/errorResponse');
+
 const Menu = require('../models/Menu');
 
 //@desc Get all menu
@@ -24,12 +26,15 @@ exports.getMenu = async (req, res, next) => {
         res.status(200).json({ success: true, data: menu });
 
         if (!menu) {
-            return res.status(400).json({ success: false })
+            // return res.status(400).json({ success: false })
+            return next(
+                new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
+            );
         }
 
     } catch (err) {
         // res.status(400).json({ success: false });
-        next(err);
+        next(new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404));
     }
 };
 //@desc create new menus
