@@ -66,18 +66,18 @@ exports.updateMenu = async (req, res, next) => {
             runValidators: true
         });
 
-        if (!bootcamp) {
+        if (!menu) {
             return res.status(400).json({ success: false });
         }
 
         res.status(200).json({ success: true, data: menu });
 
     } catch (err) {
-        res.status(200).json({ success: false });
+        res.status(400).json({ success: false });
     }
 };
 
-//@desc create new menu
+//@desc delete menu
 //@route delete /api/menu/:id
 //@access Private
 
@@ -92,6 +92,6 @@ exports.deleteMenu = async (req, res, next) => {
         res.status(200).json({ success: true, data: {} });
 
     } catch (err) {
-        res.status(200).json({ success: false });
+        res.status(400).json({ success: false });
     }
 };
