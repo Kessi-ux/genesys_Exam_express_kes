@@ -85,7 +85,7 @@ exports.deleteMenu = async (req, res, next) => {
     try {
         const menu = await Menu.findByIdAndDelete(req.params.id);
 
-        if (!bootcamp) {
+        if (!menu) {
             return res.status(400).json({ success: false });
         }
 
