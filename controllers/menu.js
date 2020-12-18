@@ -67,7 +67,9 @@ exports.updateMenu = async (req, res, next) => {
         });
 
         if (!menu) {
-            return res.status(400).json({ success: false });
+            return next(
+                new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
+            );
         }
 
         res.status(200).json({ success: true, data: menu });
@@ -86,7 +88,9 @@ exports.deleteMenu = async (req, res, next) => {
         const menu = await Menu.findByIdAndDelete(req.params.id);
 
         if (!menu) {
-            return res.status(400).json({ success: false });
+            return next(
+                new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
+            );
         }
 
         res.status(200).json({ success: true, data: {} });
