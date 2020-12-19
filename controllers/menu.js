@@ -12,7 +12,8 @@ exports.getMenus = async (req, res, next) => {
         res.status(200).json({ success: true, count: menus.length, data: menus });
 
     } catch (err) {
-        res.status(400).json({ success: false });
+        //res.status(400).json({ success: false });
+        next(err);
     }
 };
 
@@ -28,7 +29,8 @@ exports.getMenu = async (req, res, next) => {
         if (!menu) {
             // return res.status(400).json({ success: false })
             return next(
-                new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
+                //new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
+                next(err);
             );
         }
 
@@ -51,7 +53,8 @@ exports.createMenu = async (req, res, next) => {
         });
 
     } catch (err) {
-        res.status(400).json({ success: false })
+        //res.status(400).json({ success: false })
+        next(err);
     }
 };
 
@@ -75,7 +78,8 @@ exports.updateMenu = async (req, res, next) => {
         res.status(200).json({ success: true, data: menu });
 
     } catch (err) {
-        res.status(400).json({ success: false });
+        //res.status(400).json({ success: false });
+        next(err);
     }
 };
 
@@ -96,6 +100,7 @@ exports.deleteMenu = async (req, res, next) => {
         res.status(200).json({ success: true, data: {} });
 
     } catch (err) {
-        res.status(400).json({ success: false });
+        //res.status(400).json({ success: false });
+        next(err);
     }
 };
