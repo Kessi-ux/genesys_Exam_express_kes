@@ -29,14 +29,14 @@ exports.getMenu = async (req, res, next) => {
         if (!menu) {
             // return res.status(400).json({ success: false })
             return next(
-                //new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
-                next(err);
+                new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
             );
         }
 
     } catch (err) {
         // res.status(400).json({ success: false });
-        next(new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404));
+        //next(new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404));
+        next(err);
     }
 };
 //@desc create new menus
