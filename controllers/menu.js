@@ -6,101 +6,75 @@ const Menu = require('../models/Menu');
 //@route Get /api/menu
 //@access Public
 
-exports.getMenus = async (req, res, next) => {
-    try {
-        const menus = await Menu.find();
-        res.status(200).json({ success: true, count: menus.length, data: menus });
-
-    } catch (err) {
-        //res.status(400).json({ success: false });
-        next(err);
-    }
-};
+exports.getMenus = asyncHandler(async (req, res, next) => {
+    const menus = await Menu.find();
+    res.status(200).json({ success: true, count: menus.length, data: menus });
+});
 
 //@desc Get single menu
 //@route Get /api/:id
 //@access Public
 
-exports.getMenu = async (req, res, next) => {
-    try {
-        const menu = await Menu.findById(req.params.id);
-        res.status(200).json({ success: true, data: menu });
+exports.getMenu = asyncHandler(async (req, res, next) => {
 
-        if (!menu) {
-            // return res.status(400).json({ success: false })
-            return next(
-                new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
-            );
-        }
+    const menu = await Menu.findById(req.params.id);
+    res.status(200).json({ success: true, data: menu });
 
-    } catch (err) {
-        // res.status(400).json({ success: false });
-        //next(new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404));
-        next(err);
+    if (!menu) {
+        // return res.status(400).json({ success: false })
+        return next(
+            new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
+        );
     }
-};
+});
+
 //@desc create new menus
 //@route Put /api/menu
 //@access Private
 
-exports.createMenu = async (req, res, next) => {
-    try {
-        const menu = await Menu.create(req.body);
+exports.createMenu = asyncHandler(async (req, res, next) => {
 
-        res.status(201).json({
-            success: true,
-            data: menu
-        });
+    const menu = await Menu.create(req.body);
 
-    } catch (err) {
-        //res.status(400).json({ success: false })
-        next(err);
-    }
-};
+    res.status(201).json({
+        success: true,
+        data: menu
+    });
+
+});
 
 //@desc update menu
 //@route Put /api/menu/:id
 //@access Private
 
-exports.updateMenu = async (req, res, next) => {
-    try {
-        const menu = await Menu.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true
-        });
+exports.updateMenu = asyncHandler(async (req, res, next) => {
+    const menu = await Menu.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+    });
 
-        if (!menu) {
-            return next(
-                new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
-            );
-        }
-
-        res.status(200).json({ success: true, data: menu });
-
-    } catch (err) {
-        //res.status(400).json({ success: false });
-        next(err);
+    if (!menu) {
+        return next(
+            new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
+        );
     }
-};
+
+    res.status(200).json({ success: true, data: menu });
+});
 
 //@desc delete menu
 //@route delete /api/menu/:id
 //@access Private
 
-exports.deleteMenu = async (req, res, next) => {
-    try {
-        const menu = await Menu.findByIdAndDelete(req.params.id);
+exports.deleteMenu = asyncHandler(async (req, res, next) => {
+    const menu = await Menu.findByIdAndDelete(req.params.id);
 
-        if (!menu) {
-            return next(
-                new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
-            );
-        }
-
-        res.status(200).json({ success: true, data: {} });
-
-    } catch (err) {
-        //res.status(400).json({ success: false });
-        next(err);
+    if (!menu) {
+        return next(
+            new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
+        );
     }
-};
+
+    res.status(200).json({ success: true, data: {} });
+
+});
