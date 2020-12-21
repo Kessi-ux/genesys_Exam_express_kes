@@ -1,5 +1,5 @@
 const ErrorResponse = require('../utils/errorResponse');
-
+const asyncHandler = require('../middleware/async');
 const Menu = require('../models/Menu');
 
 //@desc Get all menu
