@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
+const slugify = require('slugify');
 
 //create Schema and Model
 
@@ -63,7 +64,12 @@ const FoodMenuSchema = new Schema({
     }
 });
 
-
+//create menu slug from the name
+FoodMenuSchema.pre('save', function() {
+    //console.log('Slugify ran', this.name);
+    this.slug = slugify(this.name, {lower: true});
+    next();
+});
 
 const FoodMenu = mongoose.model('Menu', FoodMenuSchema);
 
