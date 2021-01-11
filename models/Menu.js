@@ -9,19 +9,20 @@ const FoodMenuSchema = new Schema({
         required: [true, 'Please add a name'],
         unique: true,
         trim: true,
-        maxlenght: [18, 'Name cannot be more than eighteen charaters']
+        maxlength: [18, 'Name cannot be more than eighteen charaters']
     },
     slug: String,
     description: {
         type: String,
         required: [true, 'Please add a description'],
-        maxlenght: [250, 'Description cannot br more than 250 characters']
+        maxlength: [250, 'Description cannot br more than 250 characters']
     },
     email: {
         type: String,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
             'Please add a valid email'
-        ]
+        ],
+        unique: true
     },
     address: {
         type: String,
@@ -64,7 +65,7 @@ const FoodMenuSchema = new Schema({
 
 
 
-const FoodMenu = mongoose.model('foodmenu', FoodMenuSchema);
+const FoodMenu = mongoose.model('Menu', FoodMenuSchema);
 
 module.exports = FoodMenu;
 
