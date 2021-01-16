@@ -1,8 +1,9 @@
+
 {
-    "name": "Obi",
+    "_name": "Obi",
     "slug": "String",
     "description": "protein",
-    "email": "sss@gmail.com",
+    "_email": "sss@gmail.com",
     "address": "4 chime ave",
     "price": 900,
     "quantity": 1,

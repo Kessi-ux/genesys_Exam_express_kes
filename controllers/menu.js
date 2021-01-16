@@ -21,15 +21,15 @@ exports.getMenu = asyncHandler(async (req, res, next) => {
     res.status(200).json({ success: true, data: menu });
 
     if (!menu) {
-        // return res.status(400).json({ success: false })
-        return next(
+        // return .status(400).json({ success: false })
+        return nextres(
             new ErrorResponse(`Menu not found with id of ${req.params.id}`, 404)
         );
     }
 });
 
 //@desc create new menus
-//@route Put /api/menu
+//@route Post /api/menu
 //@access Private
 
 exports.createMenu = asyncHandler(async (req, res, next) => {
@@ -40,8 +40,11 @@ exports.createMenu = asyncHandler(async (req, res, next) => {
         success: true,
         data: menu
     });
+    
+    next ();
 
-});
+}
+);
 
 //@desc update menu
 //@route Put /api/menu/:id
