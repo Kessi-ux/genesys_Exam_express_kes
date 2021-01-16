@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 const slugify = require('slugify');
+const geocoder = require('../utils/geocoder');
 
 //create Schema and Model
 
@@ -31,24 +32,24 @@ const FoodMenuSchema = new Schema({
     },
     price: Number,
     quantity: Number,
-    // location: {
-    //     // GeoJson Point
-    //     type: {
-    //         type: String,
-    //         enum: ['Point'],
-    //         required: true
-    //     },
-    //     coordinates: {
-    //         type: [Number],
-    //         required: true,
-    //         index: '2dsphere'
-    //     },
-    //     formattedAddress: String,
-    //     street: String,
-    //     city: String,
-    //     zipcode: Number,
-    //     country: String
-    // },
+    location: {
+        // GeoJSON Point
+        type: {
+            type: String,
+            enum: ['Point'],
+            // required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true,
+            index: '2dsphere'
+        },
+        formattedAddress: String,
+        street: String,
+        city: String,
+        zipcode: String,
+        country: String
+    },
     averageRating: {
         type: Number,
         min: [1, 'Rating must be at least 1'],
@@ -70,6 +71,29 @@ FoodMenuSchema.pre('save', function() {
     this.slug = slugify(this.name, {lower: true});
     next();
 });
+
+
+//Geocode & create location field
+FoodMenuSchema.pre('save', async function(next) {
+    const loc = await geocoder.geocode(this.address);
+    this.location = {
+        type: 'Point',
+        coordinates: [loc[0].longitude, loc[0].latitude],
+        formattedAddress: loc[0].formattedAddress,
+        street: loc[0].streetName,
+        city: loc[0].city,
+        state: loc[0].stateCode,
+        zipcode: loc[0].zipcode,
+        country: loc[0].countryCode
+    }
+
+    //Do not save address in DB
+    this.address = undefined;
+
+    next();
+    
+});
+
 
 const FoodMenu = mongoose.model('Menu', FoodMenuSchema);
 
